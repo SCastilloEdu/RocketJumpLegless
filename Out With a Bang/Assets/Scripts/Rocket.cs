@@ -26,8 +26,17 @@ public class Rocket: MonoBehaviour {
                     // Calculate the direction from the explosion point to the object.
                     Vector2 dir = col.transform.position-transform.position;
 
-                    // Apply a force to the object based on the direction and explosion force.
-                    rb_other.AddForce(dir.normalized*explosionForce,ForceMode2D.Impulse);
+                    // Get the distance between the two objects.
+                    float distance =  Vector2.Distance(this.transform.position,col.transform.position);
+
+                    // Force to the object based on the direction and explosion force, dampened by distance.
+                    var result = (explosionForce*dir.normalized)*(1.06f-(distance/explosionRadius)); // bandaid 1.06f
+
+                    // Check for imploding rocket.
+                    if (true) { // do this later
+                        // Apply.
+                        rb_other.AddForce(result,ForceMode2D.Impulse);
+                    }
                 }
             }
             Destroy(gameObject);
