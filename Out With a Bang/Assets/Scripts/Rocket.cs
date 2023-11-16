@@ -30,10 +30,10 @@ public class Rocket: MonoBehaviour {
                     float distance =  Vector2.Distance(this.transform.position,col.transform.position);
 
                     // Force to the object based on the direction and explosion force, dampened by distance.
-                    var result = (explosionForce*dir.normalized)*(1.06f-(distance/explosionRadius)); // bandaid 1.06f
+                    var result = (explosionForce*dir.normalized)*(1.0f-(distance/explosionRadius));
 
                     // Check for imploding rocket.
-                    if (true) { // do this later
+                    if (distance<explosionRadius) {
                         // Apply.
                         rb_other.AddForce(result,ForceMode2D.Impulse);
                     }

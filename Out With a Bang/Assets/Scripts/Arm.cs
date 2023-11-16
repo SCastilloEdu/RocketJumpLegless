@@ -1,13 +1,27 @@
 using UnityEngine;
 
 public class Arm: MonoBehaviour {
-    public int firerate = 1;
+    public float firerate = 1.0f;
     private float cooldown;
     public GameObject bullet;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = this.GetComponent<Rigidbody2D>();
+    }
 
     void Update() {
         if (cooldown>0) {
             cooldown-=1*Time.deltaTime;
+        }
+
+        // Shooting rocket
+        if (Input.GetMouseButtonDown(0) && cooldown <= 0)
+        {
+            GameObject rocket = Instantiate(bullet, gameObject.transform.position, transform.rotation);
+            CopyVelocity(rb, rocket.GetComponent<Rigidbody2D>());
+            cooldown = firerate;
         }
     }
 
@@ -17,11 +31,6 @@ public class Arm: MonoBehaviour {
         float rotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
         transform.rotation=Quaternion.Euler(0f,0f,rotationZ-90);
 
-        if (Input.GetMouseButton(0)&&cooldown<=0) {
-            GameObject rocket = Instantiate(bullet,gameObject.transform.position,transform.rotation);
-            CopyVelocity(this.GetComponent<Rigidbody2D>(),rocket.GetComponent<Rigidbody2D>());
-            cooldown=firerate;
-        }
     }
 
     void CopyVelocity(Rigidbody2D from,Rigidbody2D to) {
@@ -34,4 +43,5 @@ public class Arm: MonoBehaviour {
         to.velocity=vTo;
         //https://discussions.unity.com/t/transfer-velocity-from-one-object-to-another/210795
     }
+
 }
