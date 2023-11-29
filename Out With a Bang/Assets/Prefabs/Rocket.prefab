@@ -49,8 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 2
   speed: 100
-  explosionForce: 50
+  explosionForce: 40
   explosionRadius: 12
+  explosionMaxRampup: 0.2
+  velocityLenienceX: 1.5
+  velocityLenienceY: 2
 --- !u!212 &5074943604538988592
 SpriteRenderer:
   m_ObjectHideFlags: 0
