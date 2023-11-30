@@ -5,6 +5,9 @@ public class Rocket: MonoBehaviour {
     public float speed = 2.0f; //Rocket speed.
     public float explosionForce = 10f;
     public float explosionRadius = 2f;
+    public float explosionMaxRampup = 0.4f; // Distance between player and explosion for full force
+    public float velocityLenienceX = 2.0f; // Reset X velocity if below this speed
+    public float velocityLenienceY = 2.0f; // Reset Y velocity if below this speed
     private Rigidbody2D rb;
 
     private void Start() {
@@ -29,11 +32,25 @@ public class Rocket: MonoBehaviour {
                     // Get the distance between the two objects.
                     float distance =  Vector2.Distance(this.transform.position,col.transform.position);
 
-                    // Force to the object based on the direction and explosion force, dampened by distance.
-                    var result = (explosionForce*dir.normalized)*(1.0f-(distance/explosionRadius));
+                    // If the distance is less than the rampup, apply full force.
+                    if (distance/explosionRadius <=explosionMaxRampup) {
+                        distance=0;
+                    }
+
+                    // Calculate force to the object based on the direction and explosion force, dampened by distance. Add on rampup to begin dampening past that point.
+                    var result = (explosionForce*dir.normalized)*(1.0f-(distance/explosionRadius)+explosionMaxRampup);
 
                     // Check for imploding rocket.
                     if (distance<explosionRadius) {
+                        // If the player has little momentum, set it to zero.
+                        if (rb_other.velocity.x <=2.0f) {
+                            rb_other.velocity = new Vector2 (0.0f,rb_other.velocity.y);
+                        }
+
+                        if (rb_other.velocity.y<=2.0f) {
+                            rb_other.velocity=new Vector2(rb_other.velocity.x,0.0f);
+                        }
+
                         // Apply.
                         rb_other.AddForce(result,ForceMode2D.Impulse);
                     }
