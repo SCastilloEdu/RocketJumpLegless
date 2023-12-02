@@ -6,6 +6,7 @@ public class Landmine : MonoBehaviour
     public float lifetime = 2.0f; //How long before the landmine will detonate.
     public float respawn = 5.0f;
     public bool active = true;
+    public GameObject sprite;
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -15,9 +16,10 @@ public class Landmine : MonoBehaviour
             // Wait...
             StartCoroutine(Wait(lifetime));
             // KABOOM
-            this.GetComponent<SpriteRenderer>().enabled=false;
+            sprite.GetComponent<SpriteRenderer>().enabled=false;
             // Respawn
             StartCoroutine(Wait(respawn));
+            sprite.GetComponent<SpriteRenderer>().enabled=false;
             active=true;
         }
     }
