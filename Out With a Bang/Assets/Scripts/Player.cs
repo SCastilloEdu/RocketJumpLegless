@@ -45,12 +45,12 @@ public class Player: MonoBehaviour {
         if (splat) {
             isSplatted=true;
             bodySprite.GetComponent<RelativeJoint2D>().correctionScale=0.6f;
-            int dir = 90;
+            int dir = 1;
             if (arm.GetComponent<Arm>().SpriteDirection()) { // So the player always lands on their face
                 dir*=-1;
             }
-            bodySprite.GetComponent<RelativeJoint2D>().angularOffset=dir;
-            bodySprite.GetComponent<RelativeJoint2D>().linearOffset=new Vector2(-0.6f,0);
+            bodySprite.GetComponent<RelativeJoint2D>().angularOffset=90*dir;
+            bodySprite.GetComponent<RelativeJoint2D>().linearOffset=new Vector2(-0.6f*dir,0);
             arm.GetComponent<SpriteRenderer>().enabled=false;
             StartCoroutine(DoSplat());
             splat=false;

@@ -41,6 +41,9 @@ public class Rocket: MonoBehaviour {
                     col.GetComponent<Player>().SetFreefall();
                 }
 
+                // Debug
+                
+
                 if (rb_other!=null) {
                     // Calculate the direction from the explosion point to the object.
                     Vector2 dir = col.transform.position-transform.position;
@@ -53,7 +56,7 @@ public class Rocket: MonoBehaviour {
                         distance=0;
                     }
 
-                    // Calculate force to the object based on the direction and explosion force, dampened by distance. Add on rampup to begin dampening past that point.
+                    // Calculate force to the object based on the explosion force and direction, dampened by distance. Add on rampup to begin dampening past that point.
                     var result = (explosionForce*dir.normalized)*(1.0f-(distance/explosionRadius)+explosionMaxRampup);
 
                     // Check for imploding rocket.
@@ -81,5 +84,11 @@ public class Rocket: MonoBehaviour {
             explosion.transform.parent=null;
             Destroy(gameObject);
         }
+    }
+    private void OnDrawGizmos() {
+        Gizmos.color=Color.red;
+        Gizmos.DrawWireSphere(transform.position,explosionRadius*explosionMaxRampup);
+        Gizmos.color=Color.yellow;
+        Gizmos.DrawWireSphere(transform.position,explosionRadius);
     }
 }
