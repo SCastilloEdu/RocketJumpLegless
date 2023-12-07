@@ -39,6 +39,7 @@ public class Rocket: MonoBehaviour {
 
                 if (col.GetComponent<Player>()) {
                     col.GetComponent<Player>().SetFreefall();
+                    col.GetComponent<Player>().splat = false;
                 }
 
                 // Debug

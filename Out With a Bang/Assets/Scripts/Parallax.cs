@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
+    public GameObject Player;
+    public int yFocusOffset;
     private Transform cameraTransform;
     private Vector3 lastCameraPos;
     private float textureUnitSizeX;
@@ -11,6 +13,10 @@ public class Parallax : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        if (Player)
+        {
+            gameObject.transform.position = new Vector3 (Player.transform.position.x, gameObject.transform.position.y+yFocusOffset, gameObject.transform.position.z);
+        }
         cameraTransform = Camera.main.transform;
         lastCameraPos = cameraTransform.position;
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;

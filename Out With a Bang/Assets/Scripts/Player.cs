@@ -9,7 +9,7 @@ public class Player: MonoBehaviour {
     public GameObject arm;
     private Rigidbody2D rb;
     private double freefall = 0;
-    private bool splat;
+    public bool splat;
     private bool isSplatted = false;
 
     private void Start()
