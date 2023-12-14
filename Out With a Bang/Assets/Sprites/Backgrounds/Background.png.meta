@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 69af17f6b90b324418c86e77f12ee7bc
+guid: ed85711dd2fe01946bbf457bd7c1e025
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 4
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GroundLowv4_0
+      name: Background_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10e54d55d9ed73940b28362c342c3012
-      internalID: 813245859
+      spriteID: 3f482b94fd27ae341b5ba4dea8cc5365
+      internalID: 1091290895
       vertices: []
       indices: 
       edges: []
@@ -154,7 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GroundLowv4_0: 813245859
+      Background_0: 1091290895
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
