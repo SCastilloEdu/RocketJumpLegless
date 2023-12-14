@@ -17,6 +17,7 @@ public class Arm: MonoBehaviour {
         if (cooldown>0) {
             cooldown-=1*Time.deltaTime;
         }
+        gameObject.transform.position=body.transform.position;
         isSplat=body.GetComponent<Player>().IsSplat();
         // Shooting rocket
         if (Input.GetMouseButton(0)&&cooldown<=0&&!isSplat) {
